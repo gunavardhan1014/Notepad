@@ -1,7 +1,7 @@
 <?php
 
 // Base URL of the website, without trailing slash.
-$base_url = 'http://gunasekhar.gq/';
+$base_url = 'http://gunavardhan.gq/';
 
 // Path to the directory to save the notes in, without trailing slash.
 // Should be outside of the document root, if possible.
@@ -52,7 +52,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0) {
     <meta name="generator" content="Python,HTML,CSS,Java,JavaScript,PHP,C">
     <meta name="description" content="programming">
     <meta name="keywords" content="HTML,CSS,XML,JavaScript,Java,Python,PHP,C">
-    <meta name="author" content="Gunasekhar">
+    <meta name="author" content=gunavardhan">
     <title>Notepad</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="styles.css">
