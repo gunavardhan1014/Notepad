@@ -1,21 +1,16 @@
 <?php
 
-// Base URL of the website, without trailing slash.
 $base_url = 'http://gunavardhan.gq/';
-
-// Path to the directory to save the notes in, without trailing slash.
-// Should be outside of the document root, if possible.
 $save_path = '_tmp';
 
-// Disable caching.
 header('Cache-Control: no-cache, no-store, must-revalidate');
 header('Pragma: no-cache');
 header('Expires: 0');
 
-// If no name is provided or it contains invalid characters or it is too long.
 if (!isset($_GET['note']) || !preg_match('/^[a-zA-Z0-9_-]+$/', $_GET['note']) || strlen($_GET['note']) > 64) {
 
-    // Generate a name with 5 random unambiguous characters. Redirect to it.
+    
+    
     header("Location: $base_url/" . substr(str_shuffle('01234579abcdefghjkmnpqrstwxyz'), -2));
     die;
 }
@@ -23,18 +18,15 @@ if (!isset($_GET['note']) || !preg_match('/^[a-zA-Z0-9_-]+$/', $_GET['note']) ||
 $path = $save_path . '/' . $_GET['note'];
 
 if (isset($_POST['text'])) {
+      file_put_contents($path, $_POST['text']);
 
-    // Update file.
-    file_put_contents($path, $_POST['text']);
-
-    // If provided input is empty, delete file.
-    if (!strlen($_POST['text'])) {
+if (!strlen($_POST['text'])) {
         unlink($path);
     }
     die;
 }
 
-// Output raw file if client is curl or explicitly requested.
+
 if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0) {
     if (is_file($path)) {
         header('Content-type: text/plain');
@@ -62,7 +54,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0) {
         <textarea id="content">
         <?php
             if (is_file($path)) {
-                //echo $path;
+                
                 print htmlspecialchars(file_get_contents($path), ENT_QUOTES, 'UTF-8');
             }
         ?>
